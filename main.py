@@ -1,46 +1,101 @@
 import os
-from dotenv import load_dotenv
 import discord
-import re
-from dateutil import parser as dateparser  # NEW: natural language datetime parsing
+from dotenv import load_dotenv
+from discord.ext import commands
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
 
-
+# ---------------------------------------------------
+# Load tokens from .env
+# ---------------------------------------------------
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-# Discord intents
+# ---------------------------------------------------
+# Google API Setup
+# ---------------------------------------------------
+SCOPES = ["https://www.googleapis.com/auth/calendar"]
+
+def get_google_calendar_service():
+    """
+    Loads saved Google credentials or runs OAuth login if needed.
+    Returns an authenticated Google Calendar API service object.
+    """
+    creds = None
+
+    # token.json stores the user's access/refresh tokens
+    if os.path.exists("token.json"):
+        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+
+    # If no creds or expired, run OAuth login
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+            creds = flow.run_local_server(port=0)
+
+        # Save creds for the next run
+        with open("token.json", "w") as token:
+            token.write(creds.to_json())
+
+    # Build Google Calendar API service
+    return build("calendar", "v3", credentials=creds)
+
+# ---------------------------------------------------
+# Discord Bot Setup
+# ---------------------------------------------------
 intents = discord.Intents.default()
 intents.message_content = True
-client = discord.Client(intents=intents)
 
-@client.event
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
 async def on_ready():
-    print(f"Bot is online as {client.user}")
+    print(f"Scheduling Buddy is online as {bot.user}")
 
-@client.event
-async def on_message(message):
-    # Ignore bot messages
-    if message.author.bot:
+# ---------------------------------------------------
+# !schedule command
+# ---------------------------------------------------
+@bot.command()
+async def schedule(ctx, *, text):
+    """
+    Creates a calendar event with simple natural language:
+    !schedule Lunch tomorrow at noon
+    """
+
+    # Basic sanity check
+    if not text:
+        await ctx.send("Please tell me what to schedule.")
         return
-    # Detect a natural-language date and time in the user's message
+
+    await ctx.send("Creating your event...")
+
     try:
-        dt = dateparser.parse(message.content, fuzzy=True)
+        service = get_google_calendar_service()
 
-        if dt:
-            formatted = dt.strftime('%A, %B %d at %I:%M %p')
-            response = (
-                f"📅 I detected a possible date/time: **{formatted}**.\n"
-                "Would you like me to add this to the calendar?"
-            )
-            await message.channel.send(response)
-            return
+        # Example: Just set event title to user input
+        event = {
+            "summary": text,
+            "start": {
+                "dateTime": "2025-01-01T12:00:00",
+                "timeZone": "America/New_York",
+            },
+            "end": {
+                "dateTime": "2025-01-01T13:00:00",
+                "timeZone": "America/New_York",
+            },
+        }
 
-    except Exception:
-        # If the parser can't make sense of the message, just ignore
-        pass
+        created_event = service.events().insert(calendarId="primary", body=event).execute()
 
-    # If nothing useful found, bot stays silent
-    return
-    # await message.channel.send(f"You said: {message.content}")
+        await ctx.send(f"Event created!\n**{created_event['summary']}**\nLink: {created_event.get('htmlLink')}")
 
-client.run(TOKEN)
+    except Exception as e:
+        await ctx.send(f"Error creating event: {e}")
+
+# ---------------------------------------------------
+# Start the bot
+# ---------------------------------------------------
+bot.run(TOKEN)
