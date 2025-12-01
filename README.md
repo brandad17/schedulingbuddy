@@ -36,7 +36,8 @@ into a real Google Calendar event.
 
 **Project Structure**
 
-```schedulingbuddy/
+```
+schedulingbuddy/
 ├── main.py
 ├── requirements.txt
 ├── README.md
