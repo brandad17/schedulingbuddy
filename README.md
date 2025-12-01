@@ -1,6 +1,6 @@
 # Scheduling Buddy
-**Author:** Brandon Morrow
-**Course:** CSI-4130 - Artificial Intelligence
+**Author:** Brandon Morrow  
+**Course:** CSI-4130 - Artificial Intelligence  
 
 ---
 
