@@ -71,7 +71,7 @@ python main.py
 
 **Setup Instructions:**
 
-1) Install Python
+## 1) Install Python
 - Add Python to PATH
 
 Verify installation:
