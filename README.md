@@ -53,20 +53,21 @@ Users should avoid committing .env, credentials.json, and token.json. These file
 # Quick Start Guide
 
 ```
-**clone**
+# clone
 git clone https://github.com/<your-username>/schedulingbuddy.git
 cd schedulingbuddy
 
-**create & activate venv**
+# create & activate venv
 py -3.11 -m venv venv
 .\venv\Scripts\Activate.ps1
 
-**install dependencies**
+# install dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
-**run**
+# run
 python main.py
+
 ```
 
 
