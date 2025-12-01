@@ -68,7 +68,7 @@ python -m pip install -r requirements.txt
 # run
 python main.py
 ```
-# test
+
 ## Setup Instructions:**
 
 ### 1) Install Python
@@ -80,31 +80,48 @@ python --version
 py -3.11 --version
 ```
 
-2. Create and activate a virtual environment
+### 2) Create and activate a virtual environment
+```
 py -3.11 -m venv venv
 .\venv\Scripts\Activate.ps1
-
+```
 
 (You should now see (venv) in your terminal.)
 
-3. Install dependencies
+### 3) Install dependencies
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 
 If needed:
-
+```
 python -m pip install discord.py python-dotenv dateparser pytz google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2 openai
+```
 
-4. Create your .env file
+### 4) Create your .env file
 
 Create a file named .env in the project root.
-
+```
 DISCORD_TOKEN=your_discord_token_here
 OPENAI_API_KEY=your_openai_api_key_here
-
-
+```
+**Disclaimer**
 ❗ No quotes
 ❗ No spaces before or after =
 ❗ Never commit this file
 
+### 5) Create a Discord bot
+1. https://discord.com/developers/applications
+2. Create application → create bot
+3. Copy the bot token → paste into .env
+4. Enable Message Content Intent
+5. Go to OAuth2 → URL Generator
+6. Scope: bot
+7. Permissions:
+- Send Messages
+- Read Message History
+- View Channels
+
+Invite the bot to your server.
+
+### OPTIONAL STEP: Google Calendar API Talk
