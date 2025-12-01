@@ -1,6 +1,8 @@
 # Scheduling Buddy
-Author: Brandon Morrow
-Course: CSI-4130 - Artificial Intelligence
+**Author:** Brandon Morrow
+**Course:** CSI-4130 - Artificial Intelligence
+
+---
 
 Scheduling Buddy is an AI program that helps you keep schedule throughout the day, reading your messages and emails to ensure your calendar stays up to date with everything you commit to.
 
