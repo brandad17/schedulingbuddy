@@ -45,6 +45,7 @@ schedulingbuddy/
 ├── .gitignore
 ├── credentials.json   # DO NOT COMMIT
 └── token.json         # DO NOT COMMIT
+
 ```
 
 Users should avoid committing .env, credentials.json, and token.json. These files contain information that should be stored in a safe place, not in a public repo.
