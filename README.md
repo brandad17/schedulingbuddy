@@ -11,14 +11,21 @@ Scheduling Buddy is an AI program that helps you keep schedule throughout the da
 People often agree to lunches, dinners, meetings, events, etc. through Discord, but forget to actually add them to their calendar. This leads to chronic forgetfulness and flakiness due to never fully committing to these events.
 Scheduling Buddy solves this by turning a simple message like:
 
-!schedule lunch tomorrow at noon
+**!schedule lunch tomorrow at noon**
 
 into a real Google Calendar event.
 
-People often agree to meetings in Discord chats, but forget to actually add them to their calendar.
-Scheduling Buddy solves this by turning a simple message like
+**Proposed Method**
 
+- Discord bot listens for !schedule commands
 
+- Natural-language time parsing (dateparser)
+
+- Creates events in Google Calendar API
+
+- Optional OpenAI integration for deeper language understanding
+
+- Google OAuth performs secure account authentication
 
 
 
