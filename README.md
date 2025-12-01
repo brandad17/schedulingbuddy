@@ -80,21 +80,31 @@ python --version
 py -3.11 --version
 ```
 
-test
-test
+2. Create and activate a virtual environment
+py -3.11 -m venv venv
+.\venv\Scripts\Activate.ps1
 
 
+(You should now see (venv) in your terminal.)
+
+3. Install dependencies
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 
 
-The Scheduling Buddy will require:
+If needed:
 
-1. Strong Language and Understanding
-   The model will identify tasks, events, dates/times, people, commitments, suggestions buried in chat/emailed text.
-2. Good context window
-   Email and conversation threads may be monitored across the day. This requires a model that can handle decent history so it doesn't lose earlier context.
-3. Prompting and/or fine-tuning and customization
-   This will require custom prompts to train this model, such as prompting a meeting request or commitment; extracting event + date/time + participants + location and propose adding to the calendar.
+python -m pip install discord.py python-dotenv dateparser pytz google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2 openai
 
-This project may potentially use retrieval-augmented generation (RAG) to pull user-specific data (current calendar, past meeting patterns) so suggestions are relevant.
+4. Create your .env file
 
-This will all be a LLM (Large Language Model) simliar to GPT or Gemini.
+Create a file named .env in the project root.
+
+DISCORD_TOKEN=your_discord_token_here
+OPENAI_API_KEY=your_openai_api_key_here
+
+
+❗ No quotes
+❗ No spaces before or after =
+❗ Never commit this file
+
