@@ -68,10 +68,10 @@ python -m pip install -r requirements.txt
 # run
 python main.py
 ```
+# test
+## Setup Instructions:**
 
-**Setup Instructions:**
-
-## 1) Install Python
+### 1) Install Python
 - Add Python to PATH
 
 Verify installation:
