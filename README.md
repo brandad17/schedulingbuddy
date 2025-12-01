@@ -28,6 +28,41 @@ into a real Google Calendar event.
 - Google OAuth performs secure account authentication
 
 
+**Data Sources**
+
+- Discord messages provided by the user as trigger words for SchedulingBuddy to activate
+- Google Calendar Events via an API
+- OpenAI LLM for advanced parsing
+
+**Project Structure**
+
+schedulingbuddy/
+├── main.py
+├── requirements.txt
+├── README.md
+├── .env               # DO NOT COMMIT
+├── .gitignore
+├── credentials.json   # DO NOT COMMIT
+└── token.json         # DO NOT COMMIT
+
+Users should avoid committing .env, credentials.json, and token.json. These files contain information that should be stored in a safe place, not in a public repo.
+
+# Quick Start Guide
+
+# clone
+git clone https://github.com/<your-username>/schedulingbuddy.git
+cd schedulingbuddy
+
+# create & activate venv
+py -3.11 -m venv venv
+.\venv\Scripts\Activate.ps1
+
+# install dependencies
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+# run
+python main.py
 
 
 ---
