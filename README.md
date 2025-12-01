@@ -125,3 +125,32 @@ OPENAI_API_KEY=your_openai_api_key_here
 Invite the bot to your server.
 
 ### OPTIONAL STEP: Google Calendar API Talk
+### Enable the API
+1. Go to Google Cloud Console
+2. Create/select an existing project
+3. APIs & Services → Library
+4. Enable **Google Calendar API**
+
+**Setup OAuth**
+1. APIs & Serices → OAuth Consent Screen
+2. Choose External
+3. Add your email as a **Test User**
+4. Create OAuth Client ID → **Desktop App**
+5. Download client secret JSON
+6. Rname it to **credentials.json**
+7. Place it in the project folder
+8. First time running the bot, it will opena browser to authenticate
+   - **This will not work with a oakland.edu domain account**
+9. A **token.json** file will then be generated automatically
+⚠️ **Do NOT commit credentials.json or token.json**
+
+## Running SchedulingBuddy
+```
+python main.py
+```
+In Discord:
+```
+let's get lunch tomorrow at 12pm
+```
+
+SchedulingBuddy will create a link to a new event to your calendar labeled "Lunch" at that specified time!
