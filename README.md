@@ -67,12 +67,20 @@ python -m pip install -r requirements.txt
 
 # run
 python main.py
-
 ```
 
+**Setup Instructions:**
 
+1) Install Python
+- Add Python to PATH
+
+Verify installation:
+```
+python --version
+py -3.11 --version
+```
 ---
-
+test
 
 
 
