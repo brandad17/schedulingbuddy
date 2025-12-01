@@ -52,6 +52,7 @@ Users should avoid committing .env, credentials.json, and token.json. These file
 
 # Quick Start Guide
 
+```
 **clone**
 git clone https://github.com/<your-username>/schedulingbuddy.git
 cd schedulingbuddy
@@ -66,6 +67,7 @@ python -m pip install -r requirements.txt
 
 **run**
 python main.py
+```
 
 
 ---
