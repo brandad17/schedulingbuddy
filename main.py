@@ -216,7 +216,7 @@ async def on_message(message):
 
     doc = nlp(message.content)
 
-    schedule_triggers = {"schedule", "meeting", "call", "event", "plan", "set up", "appointment"}
+    schedule_triggers = {"schedule", "meeting", "meet", "call", "event", "plan", "set up", "appointment"}
 
     has_time_entity = any(ent.label_ in ("DATE", "TIME") for ent in doc.ents)
     has_trigger_word = any(token.lemma_.lower() in schedule_triggers for token in doc)
